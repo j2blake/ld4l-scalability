@@ -1,0 +1,38 @@
+#! /usr/bin/env ruby
+
+=begin rdoc
+--------------------------------------------------------------------------------
+
+Generate files of meaningless triples.
+
+The files are created in a directory, replacing any existing .nt files. Together,
+the files constitute a set of triples with no duplications.
+
+The triples will be created from permutations of resource URIs, property URIs,
+and data values. There are equal numbers of resource URIs and data values. The
+count of resource and the count of properties must each be odd, and must be relatively prime.
+
+The routine will generate triples up to the number requested, which must be less
+than (or equal to) nResources * nProperties * 2. It will divide the generated triples
+into the number of requested, files, dividing as evenly as possible.
+
+To simulate representative use, the number of properties should be much less than
+the number of resources.
+
+--------------------------------------------------------------------------------
+
+Usage: ld4l_generate_triples <dir> <num_triples> <num_files> <num_subjects> <num_predicates> <num_objects] [OVERWRITE]
+
+--------------------------------------------------------------------------------
+=end
+
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'ld4l_scalability.rb'
+
+#
+# ---------------------------------------------------------
+# MAIN ROUTINE
+# ---------------------------------------------------------
+#
+
+Ld4lScalability::GenerateTriples.new.run
